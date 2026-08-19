@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gedächtnis">
+<title>Familiengedächtnis</title>
+<style>
+  :root{
+    --navy:#1c2b4a;
+    --cream:#fdf8ee;
+    --today:#fff4cf;
+    --today-border:#e8b923;
+    --tomorrow:#e4f0fb;
+    --tomorrow-border:#7aa9d6;
+    --things:#e7f5e8;
+    --things-border:#6fb37a;
+    --gray:#8a8f98;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;padding:0;
+    background:var(--cream);
+    color:var(--navy);
+    font-family:-apple-system, "Helvetica Neue", Arial, sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  body{
+    min-height:100vh;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  #app{
+    max-width:900px;
+    margin:0 auto;
+    padding:clamp(16px,3vw,32px);
+  }
+  #settingsBtn{
+    position:fixed;
+    top:calc(env(safe-area-inset-top) + 14px);
+    right:14px;
+    width:48px;height:48px;
+    border-radius:50%;
+    background:rgba(28,43,74,0.08);
+    color:var(--gray);
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;
+    z-index:50;
+    user-select:none;
+    -webkit-user-select:none;
+  }
+  header#clockBox{
+    text-align:center;
+    padding:clamp(20px,4vw,36px) 10px;
+  }
+  #weekday{
+    font-size:clamp(28px,5vw,44px);
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  #dateStr{
+    font-size:clamp(20px,3.4vw,30px);
+    color:#3a4a6b;
+    margin-bottom:10px;
+  }
+  #timeStr{
+    font-size:clamp(48px,9vw,84px);
+    font-weight:800;
+    letter-spacing:1px;
+  }
+  .card{
+    border-radius:24px;
+    padding:clamp(18px,3vw,28px);
+    margin-bottom:24px;
+    box-shadow:0 2px 10px rgba(28,43,74,0.08);
+  }
+  .card-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .card-head h2{ margin:0; font-size:clamp(24px,3.6vw,32px); }
+  .add-btn{
+    flex-shrink:0;
+    border:none;
+    border-radius:14px;
+    background:var(--navy);
+    color:#fff;
+    font-size:clamp(15px,1.8vw,18px);
+    font-weight:700;
+    padding:10px 16px;
+    cursor:pointer;
+  }
+  #todaySection{ background:var(--today); border:3px solid var(--today-border); }
+  #tomorrowSection{ background:var(--tomorrow); border:3px solid var(--tomorrow-border); }
+  #thingsSection{ background:var(--things); border:3px solid var(--things-border); }
+
+  .item{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    padding:14px 0;
+    border-bottom:1px solid rgba(28,43,74,0.12);
+    font-size:clamp(20px,2.6vw,26px);
+  }
+  .item:last-child{ border-bottom:none; }
+  .item .time{
+    font-weight:800;
+    min-width:90px;
+    flex-shrink:0;
+  }
+  .item .what{ font-weight:600; }
+  .item .who{ color:#3a4a6b; font-size:0.85em; display:block; }
+  .item.next{
+    background:rgba(255,255,255,0.6);
+    border-radius:14px;
+    padding:14px 12px;
+    margin:-2px 0 10px 0;
+    border-bottom:none;
+  }
+  .thing{
+    padding:14px 0;
+    border-bottom:1px solid rgba(28,43,74,0.12);
+    font-size:clamp(20px,2.6vw,26px);
+  }
+  .thing:last-child{ border-bottom:none; }
+  .thing .obj{ font-weight:800; }
+  .thing .loc{ display:block; margin-top:2px; }
+  .thing .hint{ display:block; color:#3a4a6b; font-size:0.8em; margin-top:2px; }
+  .empty{
+    font-size:clamp(18px,2.4vw,22px);
+    color:#3a4a6b;
+    padding:6px 0;
+  }
+  footer#updatedFooter{
+    text-align:center;
+    color:var(--gray);
+    font-size:14px;
+    padding:10px 0 30px 0;
+  }
+
+  .modal{
+    position:fixed; inset:0;
+    background:rgba(28,43,74,0.55);
+    display:flex; align-items:center; justify-content:center;
+    z-index:100;
+    padding:20px;
+  }
+  .modal.hidden{ display:none; }
+  .modal-content{
+    background:#fff;
+    border-radius:20px;
+    padding:28px;
+    max-width:560px;
+    width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+  }
+  .modal-content h2{ margin-top:0; font-size:24px; }
+  .modal-content p{ font-size:16px; line-height:1.5; color:#3a4a6b; }
+  .modal-content label{
+    display:block;
+    font-weight:700;
+    margin:16px 0 6px 0;
+    font-size:15px;
+  }
+  .modal-content textarea, .modal-content input[type=text], .modal-content input[type=date], .modal-content input[type=time]{
+    width:100%;
+    font-size:17px;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-family:inherit;
+  }
+  .modal-content textarea{ min-height:64px; resize:vertical; }
+  .modal-buttons{
+    display:flex; gap:12px; margin-top:22px;
+  }
+  .modal-buttons button{
+    flex:1;
+    padding:14px;
+    font-size:17px;
+    font-weight:700;
+    border-radius:12px;
+    border:none;
+    cursor:pointer;
+  }
+  .btn-primary{ background:var(--navy); color:#fff; }
+  .btn-secondary{ background:#eee; color:var(--navy); }
+  .error{ color:#b3261e; font-size:14px; min-height:18px; }
+  .hint-box{
+    background:#f3f6fb;
+    border-radius:12px;
+    padding:14px;
+    font-size:14px;
+    color:#3a4a6b;
+    margin-top:18px;
+  }
+  .confirm-box{
+    text-align:center;
+    padding:10px 0;
+  }
+  .confirm-box p{ font-size:18px; color:var(--navy); }
+  .calendar-btn{
+    display:block;
+    width:100%;
+    padding:16px;
+    margin-top:14px;
+    font-size:18px;
+    font-weight:700;
+    border-radius:12px;
+    border:none;
+    background:#2e7d46;
+    color:#fff;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<div id="settingsBtn">⚙</div>
+
+<div id="app">
+  <header id="clockBox">
+    <div id="weekday">–</div>
+    <div id="dateStr">–</div>
+    <div id="timeStr">–</div>
+  </header>
+
+  <main>
+    <section id="todaySection" class="card">
+      <div class="card-head">
+        <h2>Heute</h2>
+        <button class="add-btn" id="addTerminBtn" type="button">+ Neuer Termin</button>
+      </div>
+      <div id="todayList"></div>
+    </section>
+
+    <section id="tomorrowSection" class="card">
+      <h2>Morgen</h2>
+      <div id="tomorrowList"></div>
+    </section>
+
+    <section id="thingsSection" class="card">
+      <div class="card-head">
+        <h2>Wo ist...?</h2>
+        <button class="add-btn" id="addSacheBtn" type="button">+ Neue Sache</button>
+      </div>
+      <div id="thingsList"></div>
+    </section>
+  </main>
+
+  <footer id="updatedFooter"></footer>
+</div>
+
+<!-- Einstellungen -->
+<div id="settingsModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Einstellungen</h2>
+    <p>Fügen Sie hier den Web-App-Link Ihres Google-Apps-Scripts ein (siehe Anleitung „Familiengedächtnis einrichten", Schritt 2).</p>
+    <label for="webappUrlInput">Web-App-Link</label>
+    <textarea id="webappUrlInput" placeholder="https://script.google.com/macros/s/.../exec"></textarea>
+    <p id="settingsError" class="error"></p>
+    <div class="modal-buttons">
+      <button id="cancelSettingsBtn" class="btn-secondary" type="button">Abbrechen</button>
+      <button id="saveSettingsBtn" class="btn-primary" type="button">Speichern</button>
+    </div>
+    <div class="hint-box" id="calendarSubscribeBox" style="display:none;">
+      Damit Termine auch als echte Erinnerung im iPad-Kalender erscheinen, einmalig abonnieren:
+      <a class="calendar-btn" id="calendarSubscribeLink" href="#">📅 Kalender jetzt abonnieren</a>
+    </div>
+  </div>
+</div>
+
+<!-- Neuer Termin -->
+<div id="terminModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Neuer Termin</h2>
+    <label for="terminDatum">Datum</label>
+    <input type="date" id="terminDatum">
+    <label for="terminUhrzeit">Uhrzeit</label>
+    <input type="time" id="terminUhrzeit">
+    <label for="terminWas">Was</label>
+    <input type="text" id="terminWas" placeholder="z. B. Arzttermin">
+    <label for="terminWer">Wer / Hinweis (optional)</label>
+    <input type="text" id="terminWer" placeholder="z. B. Sohn Michael bringt hin">
+    <p id="terminError" class="error"></p>
+    <div class="modal-buttons">
+      <button id="terminCancelBtn" class="btn-secondary" type="button">Abbrechen</button>
+      <button id="terminSaveBtn" class="btn-primary" type="button">Speichern</button>
+    </div>
+  </div>
+</div>
+
+<!-- Termin gespeichert -->
+<div id="terminConfirmModal" class="modal hidden">
+  <div class="modal-content confirm-box">
+    <h2>Termin gespeichert ✓</h2>
+    <p>Er erscheint jetzt in der Übersicht.</p>
+    <button class="calendar-btn" id="addToCalendarBtn" type="button">📅 Auch im Kalender speichern</button>
+    <div class="modal-buttons">
+      <button id="terminConfirmCloseBtn" class="btn-secondary" type="button">Fertig</button>
+    </div>
+  </div>
+</div>
+
+<!-- Neue Sache -->
+<div id="sacheModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Neue Sache</h2>
+    <label for="sacheGegenstand">Gegenstand</label>
+    <input type="text" id="sacheGegenstand" placeholder="z. B. Schlüssel">
+    <label for="sacheOrt">Ort</label>
+    <input type="text" id="sacheOrt" placeholder="z. B. Schale im Flur">
+    <label for="sacheHinweis">Zusatz-Hinweis (optional)</label>
+    <input type="text" id="sacheHinweis">
+    <p id="sacheError" class="error"></p>
+    <div class="modal-buttons">
+      <button id="sacheCancelBtn" class="btn-secondary" type="button">Abbrechen</button>
+      <button id="sacheSaveBtn" class="btn-primary" type="button">Speichern</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var LS_WEBAPP_URL = "fg_webapp_url";
+  var LS_DATA_CACHE = "fg_data_cache";
+  var LS_LAST_UPDATED = "fg_last_updated";
+
+  var WEEKDAYS = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
+  var MONTHS = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+
+  // ---------- Clock ----------
+  function updateClock(){
+    var now = new Date();
+    document.getElementById("weekday").textContent = WEEKDAYS[now.getDay()];
+    document.getElementById("dateStr").textContent = now.getDate() + ". " + MONTHS[now.getMonth()] + " " + now.getFullYear();
+    var hh = String(now.getHours()).padStart(2,"0");
+    var mm = String(now.getMinutes()).padStart(2,"0");
+    document.getElementById("timeStr").textContent = hh + ":" + mm + " Uhr";
+  }
+  updateClock();
+  setInterval(updateClock, 15000);
+
+  // ---------- Helpers ----------
+  function escapeHtml(s){
+    return (s||"").replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  function parseGermanDate(str){
+    if (!str) return null;
+    var m = String(str).match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/);
+    if (!m) return null;
+    var day = parseInt(m[1],10), month = parseInt(m[2],10), year = parseInt(m[3],10);
+    if (year < 100) year += 2000;
+    var d = new Date(year, month - 1, day);
+    if (isNaN(d.getTime())) return null;
+    return d;
+  }
+
+  function sameDate(a,b){
+    return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+  }
+
+  function timeToMinutes(str){
+    var m = (str||"").match(/^(\d{1,2}):(\d{2})/);
+    if (!m) return 24*60+1;
+    return parseInt(m[1],10)*60 + parseInt(m[2],10);
+  }
+
+  function isoDateToGerman(iso){
+    // "YYYY-MM-DD" -> "TT.MM.JJJJ"
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+    if (!m) return "";
+    return m[3] + "." + m[2] + "." + m[1];
+  }
+
+  // ---------- Rendering ----------
+  function renderList(container, items, emptyText, kind){
+    container.innerHTML = "";
+    if (!items.length){
+      var e = document.createElement("div");
+      e.className = "empty";
+      e.textContent = emptyText;
+      container.appendChild(e);
+      return;
+    }
+    items.forEach(function(it, idx){
+      var div = document.createElement("div");
+      div.className = "item" + (idx === 0 && kind === "today" ? " next" : "");
+      var whoHtml = it.who ? '<span class="who">' + escapeHtml(it.who) + '</span>' : '';
+      div.innerHTML =
+        '<span class="time">' + escapeHtml(it.time || "") + '</span>' +
+        '<span><span class="what">' + escapeHtml(it.what) + '</span>' + whoHtml + '</span>';
+      container.appendChild(div);
+    });
+  }
+
+  function renderThings(container, items){
+    container.innerHTML = "";
+    if (!items.length){
+      var e = document.createElement("div");
+      e.className = "empty";
+      e.textContent = "Noch keine Einträge.";
+      container.appendChild(e);
+      return;
+    }
+    items.forEach(function(it){
+      var div = document.createElement("div");
+      div.className = "thing";
+      var hintHtml = it.hint ? '<span class="hint">' + escapeHtml(it.hint) + '</span>' : '';
+      div.innerHTML =
+        '<span class="obj">' + escapeHtml(it.obj) + '</span>' +
+        '<span class="loc">' + escapeHtml(it.loc) + '</span>' + hintHtml;
+      container.appendChild(div);
+    });
+  }
+
+  function renderTermine(termineArr){
+    var today = new Date(); today.setHours(0,0,0,0);
+    var tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate()+1);
+
+    var todayItems = [], tomorrowItems = [];
+    (termineArr||[]).forEach(function(t){
+      var d = parseGermanDate(t.datum);
+      if (!d) return;
+      var entry = { time: t.uhrzeit || "", what: t.was || "(ohne Titel)", who: t.wer || "" };
+      if (sameDate(d, today)) todayItems.push(entry);
+      else if (sameDate(d, tomorrow)) tomorrowItems.push(entry);
+    });
+    todayItems.sort(function(a,b){ return timeToMinutes(a.time)-timeToMinutes(b.time); });
+    tomorrowItems.sort(function(a,b){ return timeToMinutes(a.time)-timeToMinutes(b.time); });
+
+    renderList(document.getElementById("todayList"), todayItems, "Heute steht nichts an.", "today");
+    renderList(document.getElementById("tomorrowList"), tomorrowItems, "Morgen steht nichts an.", "tomorrow");
+  }
+
+  function renderSachen(sachenArr){
+    var items = (sachenArr||[])
+      .filter(function(r){ return r.gegenstand; })
+      .map(function(r){ return { obj: r.gegenstand, loc: r.ort || "", hint: r.hinweis || "" }; });
+    renderThings(document.getElementById("thingsList"), items);
+  }
+
+  function setUpdatedFooter(){
+    var ts = localStorage.getItem(LS_LAST_UPDATED);
+    var footer = document.getElementById("updatedFooter");
+    if (ts){
+      var d = new Date(ts);
+      footer.textContent = "Zuletzt aktualisiert: " + String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0") + " Uhr";
+    } else {
+      footer.textContent = "";
+    }
+  }
+
+  // ---------- Data loading ----------
+  function loadFromCache(){
+    try {
+      var raw = localStorage.getItem(LS_DATA_CACHE);
+      if (raw){
+        var data = JSON.parse(raw);
+        renderTermine(data.termine);
+        renderSachen(data.sachen);
+      }
+      setUpdatedFooter();
+    } catch(e){ /* ignore malformed cache */ }
+  }
+
+  function fetchAndRender(){
+    var url = localStorage.getItem(LS_WEBAPP_URL);
+    if (!url) return Promise.resolve();
+    var bust = url + (url.indexOf("?") > -1 ? "&" : "?") + "action=data&_ts=" + Date.now();
+    return fetch(bust).then(function(r){
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    }).then(function(data){
+      renderTermine(data.termine);
+      renderSachen(data.sachen);
+      localStorage.setItem(LS_DATA_CACHE, JSON.stringify(data));
+      localStorage.setItem(LS_LAST_UPDATED, new Date().toISOString());
+      setUpdatedFooter();
+    }).catch(function(err){
+      console.warn("Aktualisierung fehlgeschlagen:", err);
+    });
+  }
+
+  function postEntry(payload){
+    var url = localStorage.getItem(LS_WEBAPP_URL);
+    if (!url) return Promise.reject(new Error("Kein Web-App-Link eingerichtet."));
+    // Body bewusst als reiner String ohne eigenen Content-Type-Header,
+    // damit der Browser "text/plain" sendet und keine CORS-Preflight-Anfrage
+    // auslöst (Apps Script unterstützt OPTIONS-Preflight nicht).
+    return fetch(url, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    }).then(function(r){
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    }).then(function(res){
+      if (!res.ok) throw new Error(res.error || "Unbekannter Fehler");
+      return res;
+    });
+  }
+
+  // ---------- Settings modal ----------
+  var settingsModal = document.getElementById("settingsModal");
+  var settingsBtn = document.getElementById("settingsBtn");
+  var cancelSettingsBtn = document.getElementById("cancelSettingsBtn");
+  var saveSettingsBtn = document.getElementById("saveSettingsBtn");
+  var webappUrlInput = document.getElementById("webappUrlInput");
+  var settingsError = document.getElementById("settingsError");
+  var calendarSubscribeBox = document.getElementById("calendarSubscribeBox");
+  var calendarSubscribeLink = document.getElementById("calendarSubscribeLink");
+
+  function updateCalendarSubscribeLink(url){
+    if (!url){ calendarSubscribeBox.style.display = "none"; return; }
+    var webcalUrl = url.replace(/^https:\/\//, "webcal://").replace(/^http:\/\//, "webcal://");
+    webcalUrl += (webcalUrl.indexOf("?") > -1 ? "&" : "?") + "action=ics";
+    calendarSubscribeLink.setAttribute("href", webcalUrl);
+    calendarSubscribeBox.style.display = "block";
+  }
+
+  function openSettings(forced){
+    webappUrlInput.value = localStorage.getItem(LS_WEBAPP_URL) || "";
+    settingsError.textContent = "";
+    cancelSettingsBtn.style.display = forced ? "none" : "block";
+    updateCalendarSubscribeLink(localStorage.getItem(LS_WEBAPP_URL));
+    settingsModal.classList.remove("hidden");
+  }
+  function closeSettings(){ settingsModal.classList.add("hidden"); }
+
+  settingsBtn.addEventListener("click", function(){ openSettings(false); });
+  cancelSettingsBtn.addEventListener("click", closeSettings);
+  saveSettingsBtn.addEventListener("click", function(){
+    var u = webappUrlInput.value.trim();
+    if (!u || u.indexOf("http") !== 0){
+      settingsError.textContent = "Bitte einen gültigen Link einfügen (beginnend mit https://).";
+      return;
+    }
+    localStorage.setItem(LS_WEBAPP_URL, u);
+    updateCalendarSubscribeLink(u);
+    closeSettings();
+    fetchAndRender();
+  });
+
+  // ---------- Neuer Termin ----------
+  var terminModal = document.getElementById("terminModal");
+  var terminDatum = document.getElementById("terminDatum");
+  var terminUhrzeit = document.getElementById("terminUhrzeit");
+  var terminWas = document.getElementById("terminWas");
+  var terminWer = document.getElementById("terminWer");
+  var terminError = document.getElementById("terminError");
+  var terminConfirmModal = document.getElementById("terminConfirmModal");
+  var lastSavedTermin = null;
+
+  document.getElementById("addTerminBtn").addEventListener("click", function(){
+    var today = new Date();
+    terminDatum.value = today.getFullYear() + "-" + String(today.getMonth()+1).padStart(2,"0") + "-" + String(today.getDate()).padStart(2,"0");
+    terminUhrzeit.value = "";
+    terminWas.value = "";
+    terminWer.value = "";
+    terminError.textContent = "";
+    terminModal.classList.remove("hidden");
+  });
+  document.getElementById("terminCancelBtn").addEventListener("click", function(){
+    terminModal.classList.add("hidden");
+  });
+  document.getElementById("terminSaveBtn").addEventListener("click", function(){
+    var datum = isoDateToGerman(terminDatum.value);
+    var was = terminWas.value.trim();
+    if (!datum || !was){
+      terminError.textContent = "Bitte mindestens Datum und 'Was' ausfüllen.";
+      return;
+    }
+    var payload = { type: "termin", datum: datum, uhrzeit: terminUhrzeit.value || "", was: was, wer: terminWer.value.trim() };
+    terminError.textContent = "Wird gespeichert …";
+    postEntry(payload).then(function(){
+      terminModal.classList.add("hidden");
+      lastSavedTermin = payload;
+      terminConfirmModal.classList.remove("hidden");
+      fetchAndRender();
+    }).catch(function(err){
+      terminError.textContent = "Konnte nicht gespeichert werden: " + err.message;
+    });
+  });
+  document.getElementById("terminConfirmCloseBtn").addEventListener("click", function(){
+    terminConfirmModal.classList.add("hidden");
+  });
+
+  // ---------- Neue Sache ----------
+  var sacheModal = document.getElementById("sacheModal");
+  var sacheGegenstand = document.getElementById("sacheGegenstand");
+  var sacheOrt = document.getElementById("sacheOrt");
+  var sacheHinweis = document.getElementById("sacheHinweis");
+  var sacheError = document.getElementById("sacheError");
+
+  document.getElementById("addSacheBtn").addEventListener("click", function(){
+    sacheGegenstand.value = "";
+    sacheOrt.value = "";
+    sacheHinweis.value = "";
+    sacheError.textContent = "";
+    sacheModal.classList.remove("hidden");
+  });
+  document.getElementById("sacheCancelBtn").addEventListener("click", function(){
+    sacheModal.classList.add("hidden");
+  });
+  document.getElementById("sacheSaveBtn").addEventListener("click", function(){
+    var gegenstand = sacheGegenstand.value.trim();
+    if (!gegenstand){
+      sacheError.textContent = "Bitte einen Gegenstand eintragen.";
+      return;
+    }
+    var payload = { type: "sache", gegenstand: gegenstand, ort: sacheOrt.value.trim(), hinweis: sacheHinweis.value.trim() };
+    sacheError.textContent = "Wird gespeichert …";
+    postEntry(payload).then(function(){
+      sacheModal.classList.add("hidden");
+      fetchAndRender();
+    }).catch(function(err){
+      sacheError.textContent = "Konnte nicht gespeichert werden: " + err.message;
+    });
+  });
+
+  // ---------- Einzeltermin zum Kalender hinzufügen ----------
+  function pad2(n){ return String(n).padStart(2,"0"); }
+  function toIcsDateTime(d){
+    return d.getFullYear() + pad2(d.getMonth()+1) + pad2(d.getDate()) + "T" + pad2(d.getHours()) + pad2(d.getMinutes()) + "00";
+  }
+  function icsEscape(s){
+    return String(s||"").replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\n/g,"\\n");
+  }
+  function buildSingleIcs(datumStr, uhrzeitStr, was, wer){
+    var d = parseGermanDate(datumStr);
+    if (!d) return null;
+    var hh = 9, mm = 0;
+    var tm = (uhrzeitStr||"").match(/^(\d{1,2}):(\d{2})/);
+    if (tm){ hh = parseInt(tm[1],10); mm = parseInt(tm[2],10); }
+    var start = new Date(d.getFullYear(), d.getMonth(), d.getDate(), hh, mm, 0);
+    var end = new Date(start.getTime() + 60*60*1000);
+    var stamp = new Date().toISOString().replace(/[-:]/g,"").split(".")[0] + "Z";
+    var lines = [
+      "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Familiengedaechtnis//DE","CALSCALE:GREGORIAN",
+      "BEGIN:VEVENT",
+      "UID:" + Date.now() + "@familiengedaechtnis",
+      "DTSTAMP:" + stamp,
+      "DTSTART:" + toIcsDateTime(start),
+      "DTEND:" + toIcsDateTime(end),
+      "SUMMARY:" + icsEscape(was + (wer ? " (" + wer + ")" : "")),
+      "BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:Erinnerung","TRIGGER:-PT1H","END:VALARM",
+      "BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:Erinnerung","TRIGGER:-P1D","END:VALARM",
+      "END:VEVENT","END:VCALENDAR"
+    ];
+    return lines.join("\r\n");
+  }
+  document.getElementById("addToCalendarBtn").addEventListener("click", function(){
+    if (!lastSavedTermin) return;
+    var ics = buildSingleIcs(lastSavedTermin.datum, lastSavedTermin.uhrzeit, lastSavedTermin.was, lastSavedTermin.wer);
+    if (!ics) return;
+    var blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    window.location.href = url;
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 15000);
+  });
+
+  // ---------- Init ----------
+  loadFromCache();
+  if (!localStorage.getItem(LS_WEBAPP_URL)){
+    openSettings(true);
+  } else {
+    fetchAndRender();
+  }
+
+  setInterval(fetchAndRender, 5 * 60 * 1000); // alle 5 Minuten
+  document.addEventListener("visibilitychange", function(){
+    if (document.visibilityState === "visible") fetchAndRender();
+  });
+})();
+</script>
+</body>
+</html>
