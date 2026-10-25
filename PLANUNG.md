@@ -132,6 +132,10 @@ Vorgeschlagene Liste (noch nicht getestet):
 - Ausflüge: hessen-tourismus.de (Ausflugsziele in Kassel und Hessen; Werbeseite des Landes, eher anpreisend)
 - Kochen und Backen: oetker.de (Backen), ndr.de (Rezepte), chefkoch.de (sehr groß, Qualität schwankt)
 - Wissen und Geschichte: de.wikipedia.org
+- Geschichte zusätzlich: dhm.de/lemo (LeMO, Deutsches Historisches Museum + Haus der Geschichte + Bundesarchiv,
+  deutsche Geschichte ab 1815, mit Zeitzeugenberichten), bpb.de (Bundeszentrale für politische Bildung),
+  deutschland.de (Überblick, eher knapp)
+- Bei Krieg, Flucht und Nachkriegszeit behutsam antworten: Die Eltern oder ihre Familien haben das womöglich selbst erlebt.
 - Gesundheit: gesund.bund.de, gesundheitsinformation.de
 
 **Vorbild fragFINN** (Kindersuchmaschine): Dort durchsucht man nur eine Liste von Seiten, die Medienpädagogen geprüft haben.
