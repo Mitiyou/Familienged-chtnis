@@ -115,6 +115,16 @@ Restrisiko: Die Spracherkennung versteht die Frage falsch. Deshalb steht immer �
 | Kochen | Blatt „Rezepte“ + Allgemeinwissen | Schritt für Schritt („Sag ‚weiter‘“), auf Wunsch ein Rezept für heute |
 | Gesundheit | gesund.bund.de, gesundheitsinformation.de | Websuche nur auf diesen Seiten + Sicherheitsregeln |
 
+Vorgeschlagene Liste (noch nicht getestet):
+- Nachrichten: tagesschau.de, zdfheute.de, nachrichtenleicht.de
+- Kassel und Region: hessenschau.de, hna.de (nur frei zugängliche Artikel)
+- Wissen und Geschichte: de.wikipedia.org
+- Gesundheit: gesund.bund.de, gesundheitsinformation.de
+
+**HNA:** Die Eltern haben ein Digital-Abo und lesen die HNA in der App. Der Bot nutzt dieses Abo **nicht**
+(keine Zugangsdaten im Bot). Er sieht nur, was öffentlich ist, und verweist sonst auf die App:
+„Den ganzen Artikel kannst du in deiner HNA-App lesen.“
+
 Technik: Die Claude-Websuche bekommt eine Liste erlaubter Seiten (`allowed_domains`), andere Seiten werden nicht durchsucht.
 **Vor dem Bau prüfen:** Nutzungsbedingungen der Quellen, wie gut sich die Seiten durchsuchen lassen,
 welche Modelle welche Websuche-Version unterstützen.
@@ -147,6 +157,16 @@ Eingetragen von Kindern und Enkeln, später auch per Sprache von den Eltern selb
 - Der Bot erzählt **nicht von sich aus** („Heute vor einem Jahr …“), nur auf Nachfrage. Später vielleicht.
 - *Annahme:* Solange es überschaubar bleibt, bekommt der Bot alle Erinnerungen mit. Werden es sehr viele lange Texte,
   schicken wir nur die passenden mit.
+
+### Anleitungen
+
+Für Alltagsprobleme mit Technik, z. B. **„Wo ist die HNA-App, und wie melde ich mich wieder an?“**
+Die Kinder schreiben die Schritte auf, der Bot liest sie Schritt für Schritt vor („Sag ‚weiter‘“).
+
+- **Keine Passwörter ins Sheet:** Alles im Sheet geht an Claude. Passwörter speichert das iPad selbst
+  (Passwörter-App), damit sie beim Anmelden automatisch eingesetzt werden.
+- Idee für Phase 2: ein großer Knopf „📰 Zeitung lesen“ auf der Startseite, der die HNA-App öffnet.
+  Ob sich die App aus einer Webseite heraus öffnen lässt, ist noch nicht geprüft.
 
 Kontakt-Kategorien z. B.: Hausarzt, Augenarzt, Optiker, Autowerkstatt, Apotheke, Nachbarn.
 Kinder und Enkel tragen die Daten direkt im gemeinsamen Google Sheet ein.
