@@ -94,6 +94,15 @@ Ganz verhindern lässt sich das nicht, aber mit mehreren Schutzschichten stark v
 
 Restrisiko: Die Spracherkennung versteht die Frage falsch. Deshalb steht immer „Du hast gefragt: …“ auf dem Bildschirm.
 
+### Witze
+
+- Nur wenn danach gefragt wird („Erzähl mir einen Witz“).
+- Kurz, harmlos, auf Deutsch. Keine Witze über Alter, Vergesslichkeit, Krankheit, Tod, Herkunft oder Religion.
+- Ausnahme von „nichts erfinden“: Witze dürfen ausgedacht sein, das ist klar Unterhaltung.
+  Der Bot vermischt Witze aber nie mit Fakten.
+- Wiederholungen: Der Bot weiß ohne Speicher nicht, welche Witze er schon erzählt hat. Später ggf. die letzten
+  Witze im Sheet merken.
+
 ### Sicherheitsregeln
 
 - **Notfall** (Schmerzen, gestürzt, Hilfe): sofort 112 nennen, dazu die Nummer eines Kindes.
@@ -112,12 +121,14 @@ Restrisiko: Die Spracherkennung versteht die Frage falsch. Deshalb steht immer �
 | Nachrichten | nachrichtenleicht.de, tagesschau.de (auch in einfacher Sprache) | Websuche nur auf diesen Seiten |
 | Physik, Wissen | Wikipedia + Allgemeinwissen | Websuche nur auf diesen Seiten |
 | Geschichte | Wikipedia | Websuche, immer mit Quellenangabe |
-| Kochen | Blatt „Rezepte“ + Allgemeinwissen | Schritt für Schritt („Sag ‚weiter‘“), auf Wunsch ein Rezept für heute |
+| Kochen, Backen | 1. Blatt „Rezepte“ (Familienrezepte), 2. Rezeptseiten | Schritt für Schritt („Sag ‚weiter‘“), auf Wunsch ein Rezept für heute. Mengen nur aus der Quelle, nie geschätzt; umrechnen auf 2 Personen erlaubt |
+| Witze | Allgemeinwissen, optional Blatt „Witze“ (Lieblingswitze der Familie) | nur auf Nachfrage; siehe unten |
 | Gesundheit | gesund.bund.de, gesundheitsinformation.de | Websuche nur auf diesen Seiten + Sicherheitsregeln |
 
 Vorgeschlagene Liste (noch nicht getestet):
 - Nachrichten: tagesschau.de, zdfheute.de, nachrichtenleicht.de
 - Kassel und Region: hessenschau.de, hna.de (nur frei zugängliche Artikel)
+- Kochen und Backen: oetker.de (Backen), ndr.de (Rezepte), chefkoch.de (sehr groß, Qualität schwankt)
 - Wissen und Geschichte: de.wikipedia.org
 - Gesundheit: gesund.bund.de, gesundheitsinformation.de
 
