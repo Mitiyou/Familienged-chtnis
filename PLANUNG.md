@@ -134,6 +134,8 @@ Vorgeschlagene Liste (noch nicht getestet):
 - Wissen und Geschichte: de.wikipedia.org
 - Geschichte zusätzlich: dhm.de/lemo (LeMO, Deutsches Historisches Museum + Haus der Geschichte + Bundesarchiv,
   deutsche Geschichte ab 1815, mit Zeitzeugenberichten), bpb.de (Bundeszentrale für politische Bildung),
+  lpb-bw.de (Landeszentrale für politische Bildung Baden-Württemberg, viel Text, z. B. zum Kriegsende),
+  Landeszentrale für politische Bildung Hessen (Adresse noch prüfen, für Hessisches und Nordhessisches),
   deutschland.de (Überblick, eher knapp), planet-wissen.de (WDR/SWR, Wissensartikel als Text; noch prüfen)
 - Politik und Staat (offizielle Seiten): bundespraesident.de (u. a. ehemalige Bundespräsidenten),
   bundesregierung.de, bundestag.de
