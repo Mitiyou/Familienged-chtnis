@@ -76,6 +76,24 @@ Erkennt sie die Eltern oft falsch, steigen wir auf einen Spracherkennungsdienst 
 - Er erfindet nichts. Wenn er sich nicht sicher ist, sagt er das.
 - Bei Geschichte nennt er die Quelle („Laut Wikipedia …“), damit Streit sachlich bleibt.
 
+### Nichts erfinden (wichtigste Anforderung)
+
+Ganz verhindern lässt sich das nicht, aber mit mehreren Schutzschichten stark verringern:
+
+1. **Feste Regeln im System-Prompt:** Familienfragen nur aus den mitgeschickten Daten beantworten.
+   Steht es nicht drin: „Das steht nicht im Familiengedächtnis. Frag am besten …“
+2. **Daten mit Kennung:** Jede Zeile aus dem Sheet bekommt eine Kennung (z. B. `Sachen-12`).
+3. **Antwort mit Quellenangabe:** Der Bot antwortet in einem festen Format (Structured Output):
+   Antworttext + Quelle (`familie` / `web` / `allgemein` / `weiss_nicht`) + verwendete Kennungen.
+4. **Prüfung im Apps Script:** Beruft sich der Bot auf Familiendaten, prüft das Script, ob die genannten
+   Kennungen wirklich existieren. Wenn nicht, wird die Antwort durch „Das weiß ich leider nicht“ ersetzt.
+5. **Internet nur mit Beleg:** Antworten aus der Websuche nennen die Quelle („Laut Wikipedia …“).
+6. **Allgemeinwissen mit Vorsicht:** Ist sich der Bot nicht sicher, sagt er das.
+7. **Testfragen:** Eine feste Liste von Fragen, darunter bewusst solche, deren Antwort *nicht* im Sheet steht.
+   Läuft vor jeder Änderung am Bot; jede erfundene Antwort gilt als Fehler.
+
+Restrisiko: Die Spracherkennung versteht die Frage falsch. Deshalb steht immer „Du hast gefragt: …“ auf dem Bildschirm.
+
 ### Sicherheitsregeln
 
 - **Notfall** (Schmerzen, gestürzt, Hilfe): sofort 112 nennen, dazu die Nummer eines Kindes.
@@ -126,7 +144,7 @@ Eingetragen von Kindern und Enkeln, später auch per Sprache von den Eltern selb
 - Wortwahl: Das Blatt heißt „Erinnerungen“. Der Bot muss „Erzähl mir eine Erinnerung“ (Erlebnis)
   von „Erinner mich an den Arzttermin“ (Termin) unterscheiden.
 - **Keine Fotos:** Bilder laufen schon über den elektronischen Bilderrahmen der Eltern.
-- Offen: ob der Bot von sich aus erzählt („Heute vor einem Jahr …“).
+- Der Bot erzählt **nicht von sich aus** („Heute vor einem Jahr …“), nur auf Nachfrage. Später vielleicht.
 - *Annahme:* Solange es überschaubar bleibt, bekommt der Bot alle Erinnerungen mit. Werden es sehr viele lange Texte,
   schicken wir nur die passenden mit.
 
