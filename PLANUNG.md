@@ -287,6 +287,19 @@ Ob es dafür eine nutzbare Schnittstelle gibt, ist noch nicht geprüft.
 - Das API-Konto führt ein Kind (Abrechnung, Schlüssel). Ausgabenlimit setzen.
   Am besten einen eigenen Schlüssel nur für das Familiengedächtnis anlegen, damit die Kosten getrennt sichtbar sind.
 - Der Schlüssel liegt nur in den Skripteigenschaften des Apps Scripts.
+- Ein **eigenes API-Konto** nur für die Eltern ist auch möglich (z. B. wenn Geschwister die Kosten teilen).
+  Die App funktioniert damit genauso, es ist nur ein anderer Schlüssel.
+
+### Kostenbremsen
+
+1. Ausgabenlimit im API-Konto (und ggf. Guthaben im Voraus aufladen statt automatischer Abbuchung; Möglichkeiten in der Console prüfen).
+2. Tageslimit im Apps Script: Nach z. B. 100 Anfragen am Tag freundlich pausieren
+   („Ich mache für heute eine Pause. Ruf doch Lena an.“). Notfallhinweise funktionieren trotzdem.
+3. Zwischenspeicherung der Familiendaten (Prompt-Caching).
+4. Kurze Antworten (passt ohnehin zu den Regeln).
+5. Kostenzähler im Sheet (Blatt „Verbrauch“: Anfragen und geschätzte Kosten pro Tag).
+6. Modell: mit Sonnet 5.5 starten; testen, ob Haiku 5.5 für den Gesprächsmodus reicht.
+   Sicherheitsrelevante Erkennung (Lebensmüdigkeit, Notfall) nur mit dem Modell, das im Test am zuverlässigsten ist.
 
 ## Datenschutz
 
