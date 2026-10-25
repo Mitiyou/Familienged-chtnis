@@ -132,6 +132,20 @@ Vorgeschlagene Liste (noch nicht getestet):
 - Wissen und Geschichte: de.wikipedia.org
 - Gesundheit: gesund.bund.de, gesundheitsinformation.de
 
+**Vorbild fragFINN** (Kindersuchmaschine): Dort durchsucht man nur eine Liste von Seiten, die Medienpädagogen geprüft haben.
+Wir machen dasselbe für ältere Menschen. Kriterien, ob eine Seite auf die Liste kommt:
+- seriös und sachlich, keine Panikmache
+- frei lesbar, keine Bezahlschranke (Ausnahme: frei zugängliche HNA-Artikel)
+- wenig Werbung, keine dubiosen Gesundheitsprodukte, keine Abofallen
+- verständlich geschrieben, aber nicht kindlich: Die Eltern sind Erwachsene mit Lebenserfahrung
+- Die Familie pflegt die Liste und darf Seiten vorschlagen oder streichen.
+
+Anders als bei fragFINN bekommen die Eltern keine Trefferliste zum Anklicken. Der Bot liest die Seiten
+und antwortet in eigenen Worten mit Quellenangabe.
+
+**Knopf „Das stimmt nicht“:** Wie die Meldefunktion bei fragFINN. Ein Tipp darauf schreibt Frage und Antwort
+in ein Blatt „Meldungen“; die Kinder schauen es sich an und verbessern Daten, Regeln oder Quellenliste.
+
 **HNA:** Die Eltern haben ein Digital-Abo und lesen die HNA in der App. Der Bot nutzt dieses Abo **nicht**
 (keine Zugangsdaten im Bot). Er sieht nur, was öffentlich ist, und verweist sonst auf die App:
 „Den ganzen Artikel kannst du in deiner HNA-App lesen.“
