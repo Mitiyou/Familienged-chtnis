@@ -119,9 +119,34 @@ Gegen Langeweile, besonders für den Vater.
 **Grenzen:**
 - Der Bot sagt ehrlich, dass er ein Computerprogramm ist. Er gibt sich nicht als Mensch oder Freund aus.
 - Er ersetzt keine Menschen: Er regt an, die Kinder anzurufen oder rauszugehen.
-- Wirkt jemand sehr traurig oder spricht von Lebensmüdigkeit: behutsam reagieren, die Telefonseelsorge
-  (0800 111 0 111 oder 0800 111 0 222, kostenlos, rund um die Uhr) und ein Kind nennen.
-- Offen: Werden Gespräche gespeichert? Darf die Familie sie lesen? Soll die Familie in solchen Fällen benachrichtigt werden?
+- **Gespeichert wird nur, was der Vater/die Mutter ausdrücklich erlaubt** („Soll ich das aufschreiben?“ → Ja).
+  Sonst bleibt das Gespräch nicht erhalten, auch die Familie liest es nicht.
+
+### Hinweis an die Familie bei Lebensmüdigkeit oder Notfall
+
+Spricht ein Elternteil davon, nicht mehr leben zu wollen (oder: gestürzt, starke Schmerzen, Hilfe):
+
+1. **Der Bot reagiert sofort und behutsam**, z. B.: „Das klingt, als ginge es dir gerade gar nicht gut.
+   Ruf doch mal deine Tochter oder deinen Sohn an. Soll ich dir die Nummer sagen?“
+   Dazu die Telefonseelsorge (0800 111 0 111 oder 0800 111 0 222, kostenlos, rund um die Uhr), bei Notfall 112.
+2. **Die Kinder bekommen einen Hinweis**, zuerst per E-Mail aus dem Apps Script:
+   „Papa hat um 14:32 Uhr etwas gesagt, das nach großer Traurigkeit klang. Bitte ruf ihn an.“
+   Nur Zeitpunkt, Art des Hinweises und der eine auslösende Satz, nicht das ganze Gespräch.
+   Höchstens ein Hinweis pro Stunde.
+3. Technik: Der Bot gibt in seiner Antwort ein Feld `hinweis` (z. B. `lebensmuede`, `notfall`) zurück,
+   das Apps Script verschickt dann die E-Mail.
+
+**Grenzen, offen gesagt:**
+- Die Erkennung ist nicht zuverlässig. Der Bot kann etwas übersehen oder Redewendungen falsch deuten
+  („Ich lach mich tot“). Im Zweifel schickt er lieber einen Hinweis zu viel.
+- Das ersetzt keine Fachleute und keinen Notruf.
+- E-Mails kommen nicht immer sofort an und werden leicht übersehen. Schnellere Wege (Push-Nachricht, SMS) später prüfen.
+
+**Empfehlung:** Die Eltern vorher offen darüber informieren, dass die Kinder in solchen Fällen Bescheid bekommen.
+Erfahren sie es erst später, kann das ihr Vertrauen in den Bot zerstören.
+
+Offen: Welche Kinder bekommen den Hinweis, an welche Adressen? Ob ein Knopf „Lena anrufen“ auf dem iPad
+einen Anruf starten kann (z. B. über FaceTime), ist noch nicht geprüft.
 
 **Kosten:** Gespräche sind länger als einzelne Fragen und kosten deshalb mehr. Grobe Annahme: ein 20-Minuten-Gespräch
 mit Sonnet 5.5 ohne Zwischenspeicherung ca. 30 Cent, mit Zwischenspeicherung deutlich weniger. Noch nicht gemessen.
