@@ -35,7 +35,11 @@ Google Sheet (Familiendaten)
 - Wir brauchen keinen eigenen Server.
 - Die Familiendaten bekommt der Bot bei jeder Frage vollständig mit, eine eigene Datenbank oder Suche ist nicht nötig.
   *Annahme:* Die Daten bleiben bei Hunderten, nicht Zehntausenden Zeilen.
-- Der Code des Apps Scripts fehlt noch im Repo und soll unter `apps-script/Code.gs` abgelegt werden.
+- Bestehendes Backend: `apps-script/Code.gs` (liest/schreibt „Termine“ und „Sachen“, liefert Kalender-Feed).
+  Die Blätter haben eine Kopfzeile, die mit „Datum“ bzw. „Gegenstand“ beginnt; Zeilen darüber werden ignoriert.
+- **Absicherung nötig:** Die Web-App ist heute für jeden mit dem Link erreichbar (lesen und schreiben).
+  Sobald sie Claude aufruft, könnte jeder mit dem Link Kosten verursachen. Deshalb vor Phase 1 einen
+  geheimen Zugangsschlüssel einbauen, den nur das iPad kennt.
 
 ## Bedienung
 
@@ -149,7 +153,9 @@ Die Kosten lassen sich senken, indem die Familiendaten zwischengespeichert werde
 
 ## Offene Punkte
 
-- [ ] Apps-Script-Code ins Repo (`apps-script/Code.gs`), ohne Schlüssel
+- [x] Apps-Script-Code ins Repo (`apps-script/Code.gs`)
+- [ ] Zugangsschlüssel für die Web-App einbauen
+- [ ] Freigabe des Google Sheets auf „eingeschränkt“ prüfen
 - [ ] Name des Bots
 - [ ] Spracherkennung auf dem iPad der Eltern testen
 - [ ] Quellen prüfen (Nutzungsbedingungen, Durchsuchbarkeit)
