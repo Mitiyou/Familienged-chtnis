@@ -161,6 +161,13 @@ und antwortet in eigenen Worten mit Quellenangabe.
 **Knopf „Das stimmt nicht“:** Wie die Meldefunktion bei fragFINN. Ein Tipp darauf schreibt Frage und Antwort
 in ein Blatt „Meldungen“; die Kinder schauen es sich an und verbessern Daten, Regeln oder Quellenliste.
 
+**Die Liste ist eine Startliste.** Wir suchen nicht vorab jede einzelne Seite zusammen, sondern erweitern nach Bedarf:
+- Kann der Bot eine Frage nicht beantworten, schreibt das Apps Script sie in ein Blatt „Offene Fragen“
+  (zusammen mit den Meldungen „Das stimmt nicht“).
+- Die Kinder schauen gelegentlich drauf und ergänzen dann gezielt eine Quelle oder einen Eintrag im Sheet.
+- Später denkbar: Für harmlose Themen (Musik, Ausflüge, Rezepte) freiere Suche mit Sperrliste statt Erlaubnisliste,
+  für heikle Themen (Gesundheit, Nachrichten) weiter nur die Erlaubnisliste. Ob und wie sich das technisch trennen lässt, ist noch nicht geprüft.
+
 **HNA:** Die Eltern haben ein Digital-Abo und lesen die HNA in der App. Der Bot nutzt dieses Abo **nicht**
 (keine Zugangsdaten im Bot). Er sieht nur, was öffentlich ist, und verweist sonst auf die App:
 „Den ganzen Artikel kannst du in deiner HNA-App lesen.“
