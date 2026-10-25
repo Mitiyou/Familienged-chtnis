@@ -112,7 +112,7 @@ welche Modelle welche Websuche-Version unterstützen.
 | Familie | Name, Beziehung, Geburtstag | neu |
 | Rezepte | Name, Zutaten, Schritte, von wem | neu |
 | Anleitungen | Gerät, Schritte | neu |
-| Erinnerungen | Datum, Anlass, Was ist passiert, Wer war dabei, Eingetragen von, Foto-Link (optional) | neu |
+| Erinnerungen | Datum, Anlass, Was ist passiert, Wer war dabei, Eingetragen von | neu |
 | Medikamente | Name, wann, wofür | **später**, Datenschutz zuerst klären |
 
 ### Erinnerungen
@@ -125,7 +125,8 @@ Eingetragen von Kindern und Enkeln, später auch per Sprache von den Eltern selb
 - Er nennt, wer es eingetragen hat („Das hat Lena aufgeschrieben“).
 - Wortwahl: Das Blatt heißt „Erinnerungen“. Der Bot muss „Erzähl mir eine Erinnerung“ (Erlebnis)
   von „Erinner mich an den Arzttermin“ (Termin) unterscheiden.
-- Offen: Fotos anzeigen (Google Drive) und ob der Bot von sich aus erzählt („Heute vor einem Jahr …“).
+- **Keine Fotos:** Bilder laufen schon über den elektronischen Bilderrahmen der Eltern.
+- Offen: ob der Bot von sich aus erzählt („Heute vor einem Jahr …“).
 - *Annahme:* Solange es überschaubar bleibt, bekommt der Bot alle Erinnerungen mit. Werden es sehr viele lange Texte,
   schicken wir nur die passenden mit.
 
@@ -164,7 +165,7 @@ Die Kosten lassen sich senken, indem die Familiendaten zwischengespeichert werde
 2. **Phase 2:** Erinnerungen, Nachrichten, Wissen, Geschichte, Gesundheit (feste Quellen), Rezepte, Anleitungen.
    Feinschliff nach dem ersten Test.
 3. **Phase 3:** Der Bot kann auch speichern („Ich hab die Brille in die Küchenschublade gelegt“ → Sachen,
-   „Schreib auf: Heute war Lena da“ → Erinnerungen). Fotos zu Erinnerungen anzeigen.
+   „Schreib auf: Heute war Lena da“ → Erinnerungen).
    Danach prüfen: Medikamente, Live-Abfahrten für Bus und Bahn.
 
 ## Offene Punkte
