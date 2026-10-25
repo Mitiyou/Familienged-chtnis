@@ -134,7 +134,7 @@ Vorgeschlagene Liste (noch nicht getestet):
 - Wissen und Geschichte: de.wikipedia.org
 - Geschichte zusätzlich: dhm.de/lemo (LeMO, Deutsches Historisches Museum + Haus der Geschichte + Bundesarchiv,
   deutsche Geschichte ab 1815, mit Zeitzeugenberichten), bpb.de (Bundeszentrale für politische Bildung),
-  deutschland.de (Überblick, eher knapp)
+  deutschland.de (Überblick, eher knapp), planet-wissen.de (WDR/SWR, Wissensartikel als Text; noch prüfen)
 - Bei Krieg, Flucht und Nachkriegszeit behutsam antworten: Die Eltern oder ihre Familien haben das womöglich selbst erlebt.
 - Gesundheit: gesund.bund.de, gesundheitsinformation.de
 
@@ -144,6 +144,8 @@ Wir machen dasselbe für ältere Menschen. Kriterien, ob eine Seite auf die List
 - frei lesbar, keine Bezahlschranke (Ausnahme: frei zugängliche HNA-Artikel)
 - wenig Werbung, keine dubiosen Gesundheitsprodukte, keine Abofallen
 - verständlich geschrieben, aber nicht kindlich: Die Eltern sind Erwachsene mit Lebenserfahrung
+  (Kinderseiten wie kinderweltreise.de deshalb nicht)
+- **Inhalte als Text**, nicht nur Videos: Der Bot kann nur Text lesen; reine Video-Seiten bringen nichts
 - Die Familie pflegt die Liste und darf Seiten vorschlagen oder streichen.
 
 Anders als bei fragFINN bekommen die Eltern keine Trefferliste zum Anklicken. Der Bot liest die Seiten
