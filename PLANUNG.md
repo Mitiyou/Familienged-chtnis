@@ -98,6 +98,34 @@ Ganz verhindern lässt sich das nicht, aber mit mehreren Schutzschichten stark v
 
 Restrisiko: Die Spracherkennung versteht die Frage falsch. Deshalb steht immer „Du hast gefragt: …“ auf dem Bildschirm.
 
+### Gesprächsmodus („Lass uns ein bisschen reden“)
+
+Gegen Langeweile, besonders für den Vater.
+
+- **Freihändig weiterreden:** Nach der Antwort hört der Bot automatisch wieder zu, ohne neuen Knopfdruck.
+  Ende mit „Tschüss“, „Danke, das war's“ oder Antippen. Nach längerer Stille beendet er das Gespräch von selbst.
+  Risiko: Fernseher oder Radio im Hintergrund. Muss getestet werden.
+- **Gedächtnis im Gespräch:** Der Bot behält das laufende Gespräch (z. B. bis 30 Minuten nach dem letzten Satz),
+  danach beginnt er neu.
+- **Gesprächsstoff:**
+  - Interessen aus einem Blatt „Über uns“ (früherer Beruf, Hobbys, Heimatort, Lieblingsthemen).
+    Der Bot **fragt** nach („Erzähl mal, wie war das damals in der Werkstatt?“) statt Dinge zu behaupten.
+  - Ratespiele: Sprichwörter ergänzen, Fragen zu Geschichte, Erdkunde, Musik der 50er–70er.
+    Als Spiel, nicht als „Gedächtnistraining“.
+  - Nachrichten oder Wetter als Aufhänger; Hinweise auf Angebote in Kassel (Programm 60+).
+- **Lebensgeschichten festhalten (später):** Erzählt der Vater etwas, kann der Bot fragen:
+  „Soll ich das für die Familie aufschreiben?“ Nur mit Ja landet es im Blatt „Erinnerungen“.
+
+**Grenzen:**
+- Der Bot sagt ehrlich, dass er ein Computerprogramm ist. Er gibt sich nicht als Mensch oder Freund aus.
+- Er ersetzt keine Menschen: Er regt an, die Kinder anzurufen oder rauszugehen.
+- Wirkt jemand sehr traurig oder spricht von Lebensmüdigkeit: behutsam reagieren, die Telefonseelsorge
+  (0800 111 0 111 oder 0800 111 0 222, kostenlos, rund um die Uhr) und ein Kind nennen.
+- Offen: Werden Gespräche gespeichert? Darf die Familie sie lesen? Soll die Familie in solchen Fällen benachrichtigt werden?
+
+**Kosten:** Gespräche sind länger als einzelne Fragen und kosten deshalb mehr. Grobe Annahme: ein 20-Minuten-Gespräch
+mit Sonnet 5.5 ohne Zwischenspeicherung ca. 30 Cent, mit Zwischenspeicherung deutlich weniger. Noch nicht gemessen.
+
 ### Witze
 
 - Nur wenn danach gefragt wird („Erzähl mir einen Witz“).
@@ -192,6 +220,7 @@ welche Modelle welche Websuche-Version unterstützen.
 | Rezepte | Name, Zutaten, Schritte, von wem | neu |
 | Anleitungen | Gerät, Schritte | neu |
 | Erinnerungen | Datum, Anlass, Was ist passiert, Wer war dabei, Eingetragen von | neu |
+| Über uns | Person, Thema (Beruf, Hobby, Heimatort …), Inhalt | neu, für den Gesprächsmodus |
 | Medikamente | Name, wann, wofür | **später**, Datenschutz zuerst klären |
 
 ### Erinnerungen
