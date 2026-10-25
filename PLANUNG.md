@@ -290,6 +290,10 @@ Ob es dafür eine nutzbare Schnittstelle gibt, ist noch nicht geprüft.
 - Ein **eigenes API-Konto** nur für die Eltern ist auch möglich (z. B. wenn Geschwister die Kosten teilen).
   Die App funktioniert damit genauso, es ist nur ein anderer Schlüssel.
 
+**Entscheidung:** Budget bis ca. 20 € im Monat ist in Ordnung, die Geschwister teilen die Kosten.
+Deshalb ein **eigenes API-Konto für das Familiengedächtnis** mit einer Zahlungsmethode; das Aufteilen regeln die Geschwister untereinander.
+Ausgabenlimit etwas über dem Budget setzen (z. B. 25 €), damit der Bot nicht mitten im Monat ausfällt.
+
 ### Kostenbremsen
 
 1. Ausgabenlimit im API-Konto (und ggf. Guthaben im Voraus aufladen statt automatischer Abbuchung; Möglichkeiten in der Console prüfen).
