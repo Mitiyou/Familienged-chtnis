@@ -56,7 +56,11 @@ Startseite:
 └─────────────────────────────┘
 ```
 
-- Knopf antippen, sprechen. Die Aufnahme endet von selbst, wenn man aufhört zu reden. Kein ständiges Mithören.
+- Knopf **einmal antippen** (nicht gedrückt halten), sprechen. Die Aufnahme endet von selbst nach einer längeren
+  Sprechpause oder durch nochmaliges Antippen. Kein ständiges Mithören.
+  - Während der Aufnahme: Knopf pulsiert, großer Text „Ich höre zu …“, kurzer Ton zu Beginn und am Ende.
+  - Die Pause bis zum Ende großzügig wählen (Ziel: ca. 2–3 Sekunden), damit Nachdenken mitten im Satz nicht abbricht.
+    Ob sich das in Safari so einstellen lässt, muss getestet werden.
 - Oben steht, was verstanden wurde: „Du hast gefragt: …“
 - Die Antwort wird **vorgelesen** (eingebaute iPad-Stimme, etwas langsamer) und erscheint groß auf dem Bildschirm.
 - Große Knöpfe: **„Nochmal fragen“** und **„Nochmal vorlesen“**.
