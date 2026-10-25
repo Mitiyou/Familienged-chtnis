@@ -128,6 +128,8 @@ Restrisiko: Die Spracherkennung versteht die Frage falsch. Deshalb steht immer �
 Vorgeschlagene Liste (noch nicht getestet):
 - Nachrichten: tagesschau.de, zdfheute.de, nachrichtenleicht.de
 - Kassel und Region: hessenschau.de, hna.de (nur frei zugängliche Artikel)
+- Stadt Kassel: kassel.de (Ämter, Bürgerservice, Veranstaltungsprogramm 60+ „Neugierig und aktiv bleiben“)
+- Ausflüge: hessen-tourismus.de (Ausflugsziele in Kassel und Hessen; Werbeseite des Landes, eher anpreisend)
 - Kochen und Backen: oetker.de (Backen), ndr.de (Rezepte), chefkoch.de (sehr groß, Qualität schwankt)
 - Wissen und Geschichte: de.wikipedia.org
 - Gesundheit: gesund.bund.de, gesundheitsinformation.de
