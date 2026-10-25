@@ -112,7 +112,22 @@ welche Modelle welche Websuche-Version unterstützen.
 | Familie | Name, Beziehung, Geburtstag | neu |
 | Rezepte | Name, Zutaten, Schritte, von wem | neu |
 | Anleitungen | Gerät, Schritte | neu |
+| Erinnerungen | Datum, Anlass, Was ist passiert, Wer war dabei, Eingetragen von, Foto-Link (optional) | neu |
 | Medikamente | Name, wann, wofür | **später**, Datenschutz zuerst klären |
+
+### Erinnerungen
+
+Erlebnisse, die die Familie festhält, z. B. „Opas 80. Geburtstag im Bergpark, Lena hat Kuchen gebacken“.
+Eingetragen von Kindern und Enkeln, später auch per Sprache von den Eltern selbst („Schreib auf: Heute war Lena da“).
+
+- Fragen wie „Erzähl mir vom letzten Geburtstag“ beantwortet der Bot warm und erzählend, aber **nur aus dem Eingetragenen**.
+  Er schmückt nichts aus und erfindet keine Einzelheiten.
+- Er nennt, wer es eingetragen hat („Das hat Lena aufgeschrieben“).
+- Wortwahl: Das Blatt heißt „Erinnerungen“. Der Bot muss „Erzähl mir eine Erinnerung“ (Erlebnis)
+  von „Erinner mich an den Arzttermin“ (Termin) unterscheiden.
+- Offen: Fotos anzeigen (Google Drive) und ob der Bot von sich aus erzählt („Heute vor einem Jahr …“).
+- *Annahme:* Solange es überschaubar bleibt, bekommt der Bot alle Erinnerungen mit. Werden es sehr viele lange Texte,
+  schicken wir nur die passenden mit.
 
 Kontakt-Kategorien z. B.: Hausarzt, Augenarzt, Optiker, Autowerkstatt, Apotheke, Nachbarn.
 Kinder und Enkel tragen die Daten direkt im gemeinsamen Google Sheet ein.
@@ -146,9 +161,10 @@ Die Kosten lassen sich senken, indem die Familiendaten zwischengespeichert werde
 
 1. **Phase 1, Grundversion:** neue Startseite mit Sprechknopf, Spracheingabe, Vorlesen.
    Der Bot liest nur: Termine, Sachen, Kontakte, Familie, Wege. Dazu Wetter für Kassel. Test mit den Eltern.
-2. **Phase 2:** Nachrichten, Wissen, Geschichte, Gesundheit (feste Quellen), Rezepte, Anleitungen.
+2. **Phase 2:** Erinnerungen, Nachrichten, Wissen, Geschichte, Gesundheit (feste Quellen), Rezepte, Anleitungen.
    Feinschliff nach dem ersten Test.
-3. **Phase 3:** Der Bot kann auch speichern („Ich hab die Brille in die Küchenschublade gelegt“ → Sachen).
+3. **Phase 3:** Der Bot kann auch speichern („Ich hab die Brille in die Küchenschublade gelegt“ → Sachen,
+   „Schreib auf: Heute war Lena da“ → Erinnerungen). Fotos zu Erinnerungen anzeigen.
    Danach prüfen: Medikamente, Live-Abfahrten für Bus und Bahn.
 
 ## Offene Punkte
