@@ -135,6 +135,8 @@ Vorgeschlagene Liste (noch nicht getestet):
 - Geschichte zusätzlich: dhm.de/lemo (LeMO, Deutsches Historisches Museum + Haus der Geschichte + Bundesarchiv,
   deutsche Geschichte ab 1815, mit Zeitzeugenberichten), bpb.de (Bundeszentrale für politische Bildung),
   deutschland.de (Überblick, eher knapp), planet-wissen.de (WDR/SWR, Wissensartikel als Text; noch prüfen)
+- Politik und Staat (offizielle Seiten): bundespraesident.de (u. a. ehemalige Bundespräsidenten),
+  bundesregierung.de, bundestag.de
 - Bei Krieg, Flucht und Nachkriegszeit behutsam antworten: Die Eltern oder ihre Familien haben das womöglich selbst erlebt.
 - Gesundheit: gesund.bund.de, gesundheitsinformation.de
 
@@ -159,7 +161,7 @@ in ein Blatt „Meldungen“; die Kinder schauen es sich an und verbessern Daten
 „Den ganzen Artikel kannst du in deiner HNA-App lesen.“
 
 Technik: Die Claude-Websuche bekommt eine Liste erlaubter Seiten (`allowed_domains`), andere Seiten werden nicht durchsucht.
-**Vor dem Bau prüfen:** Nutzungsbedingungen der Quellen, wie gut sich die Seiten durchsuchen lassen,
+**Vor dem Bau prüfen:** wie viele Seiten die Liste höchstens enthalten darf, Nutzungsbedingungen der Quellen, wie gut sich die Seiten durchsuchen lassen,
 welche Modelle welche Websuche-Version unterstützen.
 
 ## Familiendaten (Google Sheet)
