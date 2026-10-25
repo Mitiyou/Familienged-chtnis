@@ -279,6 +279,15 @@ Kinder und Enkel tragen die Daten direkt im gemeinsamen Google Sheet ein.
 Bus und Bahn: zuerst feste Wege im Sheet. Live-Abfahrten für Kassel (NVV/KVG) vielleicht später.
 Ob es dafür eine nutzbare Schnittstelle gibt, ist noch nicht geprüft.
 
+## Konto und Schlüssel
+
+- Die App braucht **ein API-Konto bei Anthropic** (Claude Console) mit API-Schlüssel, abgerechnet nach Verbrauch.
+  Ein normales Claude-Konto (claude.ai, auch mit Abo) reicht dafür nach meinem Kenntnisstand nicht: Abo und API werden getrennt abgerechnet.
+- Die Eltern brauchen **kein eigenes Konto** und müssen sich nirgends anmelden.
+- Das API-Konto führt ein Kind (Abrechnung, Schlüssel). Ausgabenlimit setzen.
+  Am besten einen eigenen Schlüssel nur für das Familiengedächtnis anlegen, damit die Kosten getrennt sichtbar sind.
+- Der Schlüssel liegt nur in den Skripteigenschaften des Apps Scripts.
+
 ## Datenschutz
 
 - Was die Eltern fragen, und die Inhalte des Sheets gehen an Anthropic (USA). Gespeichert sind die Daten bei Google.
